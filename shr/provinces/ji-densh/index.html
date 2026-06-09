@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ji Dənsh - Republic of Shæwraka</title>
+    <link rel="icon" type="image/png" sizes="any" href="../../../assets/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="../../../assets/favicon/favicon-48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/favicon/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'DisplayFallback';
+            src: local('Inter');
+            unicode-range: U+0259, U+018F;
+        }
+    </style>
+    <style>
+        :root {
+            --font-display: 'Cormorant Garamond', 'DisplayFallback', Georgia, serif;
+            --primary: #9570c0;
+            --primary-dark: #6b4a9a;
+            --primary-glow: rgba(149, 112, 192, 0.25);
+            --cyan: #7de8e8;
+            --lime: #d4edaa;
+            --bg: #0e0c12;
+            --surface: #1a1624;
+            --surface-2: #221d2e;
+            --border: rgba(149, 112, 192, 0.2);
+            --text: #e8e2f0;
+            --text-muted: #9a8faa;
+            --fin: #0e0c12;
+        }
+
+        /* Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            height: 64px;
+            background: rgba(14, 12, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.05rem;
+            transition: color 0.2s;
+        }
+        .nav-logo span {
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+        .nav-logo-link:hover .nav-logo {
+            color: var(--primary);
+        }
+        .nav-logo-link:hover .nav-logo span {
+            color: var(--cyan);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.03rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        .nav-lang {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.3rem 0.75rem;
+            background: transparent;
+            transition: border-color 0.2s, color 0.2s;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-lang:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .province-hero {
+            padding: 9rem 2.5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: end;
+        }
+        .province-breadcrumb {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .province-breadcrumb a {
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+        .province-breadcrumb a:hover {
+            color: var(--cyan);
+        }
+        .province-breadcrumb-sep {
+            color: var(--border);
+        }
+        .province-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.75rem;
+        }
+        .province-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.05;
+            text-shadow: 0 0 60px var(--primary-glow);
+            margin-bottom: 1.5rem;
+        }
+        .province-flag {
+            width: 180px;
+            border-radius: 6px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+        .province-flag-placeholder {
+            width: 180px;
+            height: 120px;
+            border-radius: 6px;
+            border: 1px dashed var(--border);
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Stats bar */
+        .province-stats {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+        }
+        .province-stat {
+            background: var(--surface);
+            padding: 1.5rem 2rem;
+        }
+        .province-stat-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        .province-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .province-stat-value.small {
+            font-size: 1rem;
+        }
+        
+        /* Content */
+        .province-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem; align-items: start;
+        }
+        .section-eyebrow {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.6rem;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+        }
+        .province-body {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .province-body p + p {
+            margin-top: 1rem;
+        }
+
+        /* Sidebar */
+        .province-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .sidebar-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .sidebar-card-title {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .sidebar-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.4rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(149, 112, 192, 0.08);
+        }
+        .sidebar-row:last-child {
+            border-bottom: none;
+        }
+        .sidebar-row-label {
+            color: var(--text-muted);
+        }
+        .sidebar-row-value {
+            color: var(--text);
+            font-weight: 500;
+            text-align: right;
+            max-width: 55%;
+        }
+        .sidebar-row-value.accent {
+            color: var(--cyan);
+        }
+        .cities-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .city-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+        .city-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+        }
+        .city-dot.capital {
+            background: var(--cyan);
+        }
+        .city-name {
+            color: var(--text);
+        }
+        .city-note {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        /* Footer */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .footer-logo span {
+            color: var(--primary);
+        }
+        .footer-tagline {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            max-width: 220px;
+            line-height: 1.5;
+        }
+        .footer-col-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 1.25rem 2.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="../../../en/index.html" class="nav-logo-link">
+        <img src="../../../assets/favicon/favicon-512.png" alt="sønshuənia seal" class="nav-icon"/>
+        <span class="nav-logo">Republic of Shæwraka</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../en/index.html#provinces">Provinces</a></li>
+        <li><a href="../../../en/index.html#language">Language</a></li>
+        <li><a href="../../../en/currency/index.html">Currency</a></li>
+    </ul>
+    <button class="nav-lang" onclick="switchLang()">SHR</button>
+</nav>
+<div class="province-hero">
+    <div>
+        <div class="province-breadcrumb">
+            <a href="../../../en/index.html">Shæwraka</a>
+            <span class="province-breadcrumb-sep">›</span>
+            <a href="../../../en/index.html#provinces">Provinces</a>
+            <span class="province-breadcrumb-sep">›</span>
+            <span>Ji Dənsh</span>
+        </div>
+        <div class="province-tag">Province</div>
+        <h1 class="province-name">Ji Dənsh</h1>
+    </div>
+    <div class="province-flag-placeholder">Flag / Seal<br/>Coming Soon</div>
+</div>
+
+<div class="province-stats">
+    <div class="province-stat">
+        <div class="province-stat-label">Capital</div>
+        <div class="province-stat-value small">Chakøng</div>
+    </div>
+    <div class="province-stat">
+        <div class="province-stat-label">Population</div>
+        <div class="province-stat-value">109.4M</div>
+    </div>
+    <div class="province-stat">
+        <div class="province-stat-label">Area</div>
+        <div class="province-stat-value small">~508,000 km²</div>
+    </div>
+    <div class="province-stat">
+        <div class="province-stat-label">Official Languages</div>
+        <div class="province-stat-value small">Shæwrakin, Ukrainian</div>
+    </div>
+</div>
+
+<div class="province-content">
+    <div>
+        <p class="section-eyebrow">Overview</p>
+        <h2 class="section-title">About Ji Dənsh</h2>
+        <div class="province-body">
+            <p>Text goes here...</p>
+        </div>
+    </div>
+    
+    <div class="province-sidebar">
+        <div class="sidebar-card">
+            <div class="sidebar-card-title">At a Glance</div>
+            <div class="sidebar-row">
+                <span class="sidebar-row-label">Status</span>
+                <span class="sidebar-row-value">Province</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-row-label">Capital</span>
+                <span class="sidebar-row-value">Chakøng</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-row-label">Population</span>
+                <span class="sidebar-row-value">109.370.427</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-row-label">Area</span>
+                <span class="sidebar-row-value">~508,000 km²</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-row-label">Languages</span>
+                <span class="sidebar-row-value">Shæwrakin<br/>Ukranian</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-card">
+            <div class="sidebar-card-title">Notable Cities</div>
+            <div class="cities-list">
+                <div class="city-item">
+                    <div class="city-dot capital"></div>
+                    <span class="city-name">Chakøng</span>
+                    <span class="city-note">Capital</span>
+                </div>
+                <div class="city-item">
+                    <div class="city-dot"></div>
+                    <span class="city-name">Rikæsh</span>
+                    <span class="city-note">Popular Riverside Retreat</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="divider"/>
+
+<footer>
+    <div>
+        <div class="footer-logo">Republic of Shæwraka</div>
+        <p class="footer-tagline"> Official tourism portal of the Republic of Shæwraka.</p>
+    </div>
+    <div>
+        <div class="footer-col-title">Provinces</div>
+        <ul class="footer-links">
+            <li><a href="../../../en/provinces/sonshuenia/index.html">Sønshuənia</a></li>
+            <li><a href="../../../en/provinces/ji-densh/index.html">Ji Dənsh</a></li>
+            <li><a href="../../../en/provinces/aophua/index.html">Aøphua</a></li>
+            <li><a href="../../../en/provinces/raek/index.html">Ræk</a></li>
+            <li><a href="../../../en/provinces/saenda/index.html">Sænda</a></li>
+            <li><a href="../../../en/provinces/polansine-kholae/index.html">Pølænsíne Kholæ (Kholæ Province)</a></li>
+            <li><a href="../../../en/provinces/kaelden/index.html">Kældən</a></li>
+            <li><a href="../../../en/provinces/chaefsh/index.html">Chæfsh</a></li>
+        </ul>
+    </div>
+    <div>
+        <div class="footer-col-title">Information & Resources</div>
+        <ul class="footer-links">
+            <li><a href="../../../en/currency/index.html">Currency (dəl)</a></li>
+            <li><a href="../../../en/culture/index.html">Language</a></li>
+            <li><a href="https://albinofoxgithub.github.io/ShaewrakanLexicon/">Shæwrakin Lexicon</a></li>
+        </ul>
+    </div>
+</footer>
+<div class="footer-bottom">
+    &copy; 2026 Shæwraka Digital Service Agency Strø.<br/>All rights reserved.
+</div>
+
+<script>
+    localStorage.setItem('shaewraka-lang', 'en');
+    function switchLang() {
+        localStorage.setItem('shaewraka-lang', 'shr');
+        window.location.href = '../../../shr/provinces/ji-densh/index.html';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Republic of Shæwraka</title>
+    <link rel="icon" type="image/png" sizes="any" href="../assets/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon/favicon-48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'DisplayFallback';
+            src: local('Inter');
+            unicode-range: U+0259, U+018F;
+        }
+    </style>
+    <style>
+        :root {
+            --font-display: 'Cormorant Garamond', 'DisplayFallback', Georgia, serif;
+            --primary: #9570c0;
+            --primary-dark: #6b4a9a;
+            --primary-glow: rgba(149, 112, 192, 0.25);
+            --cyan: #7de8e8;
+            --lime: #d4edaa;
+            --bg: #0e0c12;
+            --surface: #1a1624;
+            --surface-2: #221d2e;
+            --border: rgba(149, 112, 192, 0.2);
+            --text: #e8e2f0;
+            --text-muted: #9a8faa;
+            --fin: #0e0c12;
+        }
+
+        /* Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            height: 64px;
+            background: rgba(14, 12, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.05rem;
+            transition: color 0.2s;
+        }
+        .nav-logo span {
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+        .nav-logo-link:hover .nav-logo {
+            color: var(--primary);
+        }
+        .nav-logo-link:hover .nav-logo span {
+            color: var(--cyan);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.03rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        .nav-lang {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.3rem 0.75rem;
+            background: transparent;
+            transition: border-color 0.2s, color 0.2s;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-lang:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            overflow: hidden;
+        }
+        .hero-flag {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            opacity: 0.07;
+        }
+        .hero-flag .stripe-purple {
+            flex: 1;
+            background: var(--primary);
+        }
+        .hero-flag .stripe-lime {
+            flex: 1;
+            background: var(--lime);
+        }
+        .hero-flag .stripe-cyan {
+            flex: 1;
+            background: var(--cyan);
+        }
+        .hero-glow {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-flag-img {
+            width: 140px;
+            border-radius: 4px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .hero-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: 0.02em;
+            color: var(--text);
+            text-shadow: 0 0 60px var(--primary-glow);
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+        .hero h1 .ae {
+            color: var(--primary);
+        }
+        .hero-tagline {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-weight: 300;
+            color: var(--text-muted);
+            max-width: 480px;
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            position: relative;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            letter-spacing: 0.04em;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .btn-ghost {
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            letter-spacing: 0.04em;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-ghost:hover {
+            border-color: var(--primary); color: var(--text);
+        }
+
+        /* Stats bar */
+        .stats {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .stat {
+            text-align: center;
+            padding: 1rem;
+        }
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 0.35rem;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Section shared */
+        section {
+            padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto;
+        }
+        .section-eyebrow {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .section-body {
+            color: var(--text-muted);
+            max-width: 560px;
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+        }
+
+        /* Provinces grid */
+        .provinces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .province-card {
+            background: var(--surface);
+            padding: 1.75rem;
+            transition: background 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        .province-card:hover {
+            background: var(--surface-2);
+        }
+        .province-card-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+        .province-card-name {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.2;
+        }
+        .province-card-capital {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .province-card-capital span {
+            color: var(--cyan);
+        }
+        .province-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            line-height: 1.5;
+        }
+        .province-card-arrow {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* Capital district card */
+        .capital-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            transition: background 0.2s;
+        }
+        .capital-card:hover {
+            background: var(--surface-2);
+        }
+        .capital-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--lime);
+            border: 1px solid var(--lime);
+            border-radius: 3px;
+            padding: 0.2rem 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Language section */
+        .lang-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .lang-sample {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--primary);
+            line-height: 1.4;
+            text-shadow: 0 0 30px var(--primary-glow);
+        }
+        .lang-sample-translation {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .footer-logo span {
+            color: var(--primary);
+        }
+        .footer-tagline {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            max-width: 220px;
+            line-height: 1.5;
+        }
+        .footer-col-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 1.25rem 2.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="../en/index.html" class="nav-logo-link">
+        <img src="../assets/favicon/favicon-512.png" alt="sønshuənia seal" class="nav-icon"/>
+        <span class="nav-logo">Republic of Shæwraka</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#provinces">Provinces</a></li>
+        <li><a href="#language">Language</a></li>
+        <li><a href="../en/currency/index.html">Currency</a></li>
+    </ul>
+    <button class="nav-lang" onclick="switchLang()">SHR</button>
+</nav>
+<div class="hero">
+    <div class="hero-flag" aria-hidden="true">
+        <div class="stripe-purple"></div>
+        <div class="stripe-lime"></div>
+        <div class="stripe-cyan"></div>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <img class="hero-flag-img" src="../assets/flag.png" alt="Flag of Shæwraka"/>
+    <p class="hero-eyebrow">Official Tourism Portal</p>
+    <h1>Republic of Shæwraka</h1>
+    <p class="hero-tagline">Welcome to Shæwraka, Land of the Sharks</p>
+    <div class="hero-cta">
+        <a href="#provinces" class="btn-primary">Explore Provinces</a>
+        <a href="culture/index.html" class="btn-ghost">Our Language</a>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <div class="stat-value">~181M</div>
+        <div class="stat-label">Population</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">Sønshuənia</div>
+        <div class="stat-label">Capital District</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">dəl</div>
+        <div class="stat-label">Currency</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Provinces</div>
+    </div>
+</div>
+
+<section id="provinces">
+    <p class="section-eyebrow">Discover</p>
+    <h2 class="section-title">Provinces & Territories of Shæwraka</h2>
+    <p class="section-body">From the agricultural heartlands of Sænda to the remote wilderness of Chæfsh, each province carries its own character, history, and people.</p>
+    
+    <a href="provinces/sonshuenia/index.html" class="capital-card">
+        <div>
+            <span class="capital-badge">Federal Capital District</span>
+            <div class="province-card-name" style="font-family: 'Cormorant Garamond', 'DisplayFallback',Georgia,serif;font-size:1.5rem;margin-bottom:0.4rem;">Sønshuənia</div>
+            <div class="province-card-capital">Capital City: <span>Sønshuənia City</span></div>
+            <p class="province-card-desc" style="margin-top:0.75rem;">Home to the federal government and the Prykhodko family's ancient wardenship, Sønshuənia sits where the Black Sea meets shæwraka's political heart.</p>
+        </div>
+        <div class="province-card-arrow">Explore →</div>
+    </a>
+    
+    <div class="provinces-grid">
+        <a href="provinces/ji-densh/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Ji Dənsh</div>
+            <div class="province-card-capital">Capital: <span>Chakøng</span></div>
+            <p class="province-card-desc">The most populous province, home to over 109 million people. Known for the popular riverside retreat of Rikæsh.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="provinces/aophua/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Aøphua</div>
+            <div class="province-card-capital">Capital: <span>Jiænīv</span></div>
+            <p class="province-card-desc">Shæwraka's industrial heartland, centred on the Jiænīv peninsula and its manufacturing centres.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="provinces/raek/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Ræk</div>
+            <div class="province-card-capital">Capital: <span>Ræk City</span></div>
+            <p class="province-card-desc">The gateway for imported goods into Shæwraka, Ræk leads the republic in trade volume and international commerce.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="provinces/saenda/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Sænda</div>
+            <div class="province-card-capital">Capital: <span>Jinadənsh</span></div>
+            <p class="province-card-desc">The country province. Agriculture, open land, and a deeply traditional Sharkin population spread across the province's wide rural expanses.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="provinces/polansine-kholae/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Pølænsíne Kholæ (Kholæ Province)</div>
+            <div class="province-card-capital">Capital: <span>Fulif</span></div>
+            <p class="province-card-desc">The seat of Shæwraka's military. Most national defence training and stationed forced are based here.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="provinces/kaelden/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Kældən</div>
+            <div class="province-card-capital">Capital: <span>Città Costiera</span></div>
+            <p class="province-card-desc">Shæwraka's most distant province, shaped by centuries of Italian culture and Maltese-Australian immigration.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="provinces/chaefsh/index.html" class="province-card">
+            <div class="province-card-tag">Province</div>
+            <div class="province-card-name">Chæfsh</div>
+            <div class="province-card-capital">Capital: <span>Chåæ</span></div>
+            <p class="province-card-desc">Vast, mountainous, and sparsely populated. Chæfsh's harsh terrain makes it one of the most remote places in the republic.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+        
+        <a href="territories/un/index.html" class="province-card">
+            <div class="province-card-tag">Territory</div>
+            <div class="province-card-name">Ún</div>
+            <div class="province-card-capital">Capital: <span>Céan</span></div>
+            <p class="province-card-desc">A small island off the eastern coast of Spain. Ún is the smallest and only territory of the republic.</p>
+            <div class="province-card-arrow">Explore →</div>
+        </a>
+    </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="language">
+    <p class="section-eyebrow">Culture</p>
+    <h2 class="section-title">The Shæwrakin Language</h2>
+    <p class="section-body">Shæwrakin is the national language of Shæwraka, spoken across all provinces and territories. Its written form uses a distictive set of characters, reflecting the country's unique cultural heritage.</p>
+    <div class="lang-section">
+        <div>
+            <div class="lang-sample">Shæwrakan Nørmæl Dəlukø</div>
+            <div class="lang-sample-translation">Shæwrakan Standard Dollar - the national currency</div>
+        </div>
+        <div>
+            <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:1.5rem;">Shæwrakin features three grammatical cases, a sacred animacy class reserved for sharks and distinct formal & everyday registers used across public and private life.</p>
+            <a href="culture/index.html" class="btn-primary">Explore the language</a>
+        </div>
+    </div>
+</section>
+
+<hr class="divider"/>
+
+<footer>
+    <div>
+        <div class="footer-logo">Republic of Shæwraka</div>
+        <p class="footer-tagline"> Official tourism portal of the Republic of Shæwraka.</p>
+    </div>
+    <div>
+        <div class="footer-col-title">Provinces</div>
+        <ul class="footer-links">
+            <li><a href="provinces/sonshuenia/index.html">Sønshuənia</a></li>
+            <li><a href="provinces/ji-densh/index.html">Ji Dənsh</a></li>
+            <li><a href="provinces/aophua/index.html">Aøphua</a></li>
+            <li><a href="provinces/raek/index.html">Ræk</a></li>
+            <li><a href="provinces/saenda/index.html">Sænda</a></li>
+            <li><a href="provinces/polansine-kholae/index.html">Pølænsíne Kholæ (Kholæ Province)</a></li>
+            <li><a href="provinces/kaelden/index.html">Kældən</a></li>
+            <li><a href="provinces/chaefsh/index.html">Chæfsh</a></li>
+        </ul>
+    </div>
+    <div>
+        <div class="footer-col-title">Information & Resources</div>
+        <ul class="footer-links">
+            <li><a href="currency/index.html">Currency (dəl)</a></li>
+            <li><a href="culture/index.html">Language</a></li>
+            <li><a href="https://albinofoxgithub.github.io/ShaewrakanLexicon/">Shæwrakin Lexicon</a></li>
+        </ul>
+    </div>
+</footer>
+<div class="footer-bottom">
+    &copy; 2026 Shæwraka Digital Service Agency Strø. All rights reserved.
+</div>
+
+<script>
+    localStorage.setItem('shaewraka-lang', 'en');
+    function switchLang() {
+        localStorage.setItem('shaewraka-lang', 'shr');
+        window.location.href = '../shr/index.html';
+    }
+</script>
+</body>
+</html>
