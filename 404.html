@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="https://albinofoxgithub.github.io/ShaewrakaSite/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 - Gə Prøspæk Shæwraka</title>
@@ -181,7 +182,7 @@
 <body>
 <nav>
     <a href="en/" id="nav-home-link" class="nav-logo-link">
-        <img src="ShaewrakaSite/assets/favicon/favicon-512.png" alt="Shæwraka Coat of Arms" class="nav-icon" />
+        <img src="assets/favicon/favicon-512.png" alt="Shæwraka Coat of Arms" class="nav-icon" />
         <span class="nav-logo" id="nav-logo"></span>
     </a>
 </nav>
@@ -197,7 +198,7 @@
 
 <script>
     const lang = localStorage.getItem('shaewraka-lang') || 'en';
-    const homePath = window.location.origin + '/ShaewrakaSite/' + lang + '/';
+    const homePath = lang + '/';
     
     const content = {
         en: {
