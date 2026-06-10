@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Gə Prøspæk Shæwraka</title>
+    <link rel="icon" type="image/png" sizes="any" href="/assets/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon/favicon-48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'DisplayFallback';
+            src: local('Inter');
+            unicode-range: U+0259, U+018F;
+        }
+    </style>
+    <style>
+        :root {
+            --font-display: 'Fraunces', 'DisplayFallback', Georgia, serif;
+            --primary: #9570c0;
+            --primary-dark: #6b4a9a;
+            --primary-glow: rgba(149, 112, 192, 0.25);
+            --cyan: #7de8e8;
+            --lime: #d4edaa;
+            --bg: #0e0c12;
+            --surface: #1a1624;
+            --surface-2: #221d2e;
+            --border: rgba(149, 112, 192, 0.2);
+            --text: #e8e2f0;
+            --text-muted: #9a8faa;
+            --fin: #0e0c12;
+        }
+
+        /* Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Fraunces', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            color: inherit; text-decoration: none;
+        }
+
+        /* Nav */
+        nav {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0 2.5rem;
+            height: 64px;
+            background: rgba(14, 12, 18, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+        .nav-logo span {
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+        .nav-logo-link:hover .nav-logo {
+            color: var(--primary);
+        }
+        .nav-logo-link:hover .nav-logo span {
+            color: var(--cyan);
+        }
+
+        /* Main */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            text-shadow: 0 0 80px var(--primary-glow);
+            position: relative;
+            margin-bottom: 0.25rem;
+        }
+        .error-shæwrakin {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .error-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .error-body {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 420px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            letter-spacing: 0.04em;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        /* Footer */
+        .footer-bottom {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 1.25rem 2.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="en/" id="nav-home-link" class="nav-logo-link">
+        <img src="assets/favicon/favicon-512.png" alt="Shæwraka Coat of Arms" class="nav-icon" />
+        <span class="nav-logo" id="nav-logo"></span>
+    </a>
+</nav>
+<main>
+    <div class="glow" aria-hidden="true"></div>
+    <div class="error-code">404</div>
+    <p class="error-shæwrakin" id="error-sub"></p>
+    <h1 class="error-title" id="error-title"></h1>
+    <p class="error-body" id="error-body"></p>
+    <a href="en/" id="home-btn" class="btn-primary"></a>
+</main>
+<div class="footer-bottom" id="footer-text"></div>
+
+<script>
+    const lang = localStorage.getItem('shaewraka-lang') || 'en';
+    const homePath = lang + '/';
+    
+    const content = {
+        en: {
+            bar: 'Republic of Shæwraka',
+            sub: 'Page not found.',
+            title: "You've drifted off the map.",
+            body: "The page you're looking for doesn't exist or has been moved. Navigate back to the home page to find what you need.",
+            btn: "Return to Shæwraka Home",
+            footer: '© 2026 Shæwraka Digital Service Agency Strø. All rights reserved.'
+        },
+        shr: {
+            bar: 'Gə Prøspæk Shæwraka',
+            sub: 'Dægøpæj ni eksistæŋaæk.',
+            title: 'Di drøvæk æv gə kærtsi.',
+            body: 'Gə dægøpæj tæ di søvædi ni eksistæŋaæk vel møvæŋaæk. Nævøgæk røvørnæk tø gə høm dægøpæj tø søvæ tæ di nødædi.',
+            btn: 'Røvørnæk tø Shæwraka Høm',
+            footer: '© 2026 Strøvøkagørn Dægøstrøn Strøværnsi Shæwraka Strø. Prøvøktstrø strøvøkæl prøhævørn.'
+        }
+    };
+    
+    const t = content[lang] || content.en;
+    
+    document.getElementById('nav-logo').textContent = t.bar;
+    document.getElementById('error-sub').textContent = t.sub;
+    document.getElementById('error-title').textContent = t.title;
+    document.getElementById('error-body').textContent = t.body;
+    document.getElementById('home-btn').textContent = t.btn;
+    document.getElementById('home-btn').href = homePath;
+    document.getElementById('nav-home-link').href = homePath;
+    document.getElementById('footer-text').textContent = t.footer;
+</script>
+</body>
+</html>

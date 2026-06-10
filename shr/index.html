@@ -68,7 +68,8 @@
             left: 0;
             right: 0;
             z-index: 100;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
             justify-content: space-between;
             padding: 0 2.5rem;
@@ -76,6 +77,9 @@
             background: rgba(14, 12, 18, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
+        }
+        .nav-lang {
+            justify-self: end;
         }
         .nav-logo-link {
             display: flex;
